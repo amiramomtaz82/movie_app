@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app/provider/language_provider.dart';
 import 'package:movie_app/provider/theme_provider.dart';
+import 'package:movie_app/ui/screens/bording/on_bording_screen.dart';
 import 'package:movie_app/ui/screens/splash_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
     provider = Provider.of(context);
     theme=Provider.of(context);
 
-    return MaterialApp(home: SplashScreen(),
+    return MaterialApp(home: OnBoardingScreen(),
 
 
 
