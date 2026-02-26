@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/core/app_assets.dart';
 import 'package:movie_app/core/app_constant.dart';
+import 'package:movie_app/core/app_routes.dart';
 import 'package:movie_app/ui/app_widget/custom_boarding.dart';
 
 class BoardingFive extends StatelessWidget {
@@ -9,7 +10,9 @@ class BoardingFive extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomBoarding(onClick:
-    (){}, title: Appstrings.start, image:Appassets.image1917,
+    (){
+      Navigator.push(context,AppRoutes.login);
+    }, title: Appstrings.start, image:Appassets.image1917,
     textButton: "Finish",
     onClickBack: (){Navigator.pop(context);},);
   }

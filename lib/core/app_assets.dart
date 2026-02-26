@@ -1,6 +1,14 @@
  abstract class Appassets {
 
   static const String image1 = 'assets/images/1.png';
+  static const String phone = 'assets/images/phone.png';
+  static const String password = 'assets/images/password.png';
+  static const String name = 'assets/images/name.png';
+  static const String google = 'assets/images/google.png';
+  static const String LR = 'assets/images/LR.png';
+  static const String email= 'assets/images/Email.png';
+  static const String eyeOff = 'assets/images/icon _eye off_.png';
+  static const String Eg = 'assets/images/EG.png';
   static const String image2 = 'assets/images/2.png';
   static const String image1917 = 'assets/images/1917.png';
 

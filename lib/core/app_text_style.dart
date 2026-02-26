@@ -8,11 +8,18 @@ abstract final class Appstyles {
 
       color: Appcolors.white, fontWeight: FontWeight.w400, fontSize: 14);
 
+  static final TextStyle yellow14regular = TextStyle(
 
+
+      color: Appcolors.yellow, fontWeight: FontWeight.w400, fontSize: 14);
   static final TextStyle black20med = TextStyle(
 
 
       color: Appcolors.black, fontWeight: FontWeight.w500, fontSize: 20);
+  static final TextStyle black14reg = TextStyle(
+
+
+      color: Appcolors.black, fontWeight: FontWeight.w400, fontSize: 14);
 
 
   static final TextStyle white36Med = TextStyle(
