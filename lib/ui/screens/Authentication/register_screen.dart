@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/core/app_assets.dart';
 import 'package:movie_app/core/app_colors.dart';
 import 'package:movie_app/core/app_constant.dart';
@@ -11,12 +12,14 @@ import 'package:movie_app/ui/app_widget/custome_elevated_button.dart';
 import 'package:movie_app/ui/screens/home/home_screen.dart';
 
 import '../../../core/show_message.dart';
-import '../../../firebase_manager/data_model.dart';
-import '../../../firebase_manager/firebaseAuth.dart';
+
+import '../../presentaion/cubit_auth.dart';
+import '../../presentaion/cubit_state.dart';
 
 class RegisterScreen extends StatefulWidget {
   User? googleUser;
-  RegisterScreen({Key? key,this.googleUser}) : super(key: key);
+  String email;
+  RegisterScreen({Key? key,required this.email}) : super(key: key);
 
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
@@ -24,13 +27,18 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   bool isSelected= false;
-  TextEditingController emailController= TextEditingController();
+  late TextEditingController emailController;
 
   TextEditingController nameController= TextEditingController();
   TextEditingController phoneController= TextEditingController();
   TextEditingController passwordController= TextEditingController();
   TextEditingController confirm_passwordController= TextEditingController();
 String selectedAvatar="assets/images/Component 11 – 2.png";
+
+  void initState() {
+    super.initState();
+    emailController = TextEditingController(text: widget.email);
+  }
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
@@ -50,35 +58,51 @@ String selectedAvatar="assets/images/Component 11 – 2.png";
 
         title: Text(Appstrings.register,style: Appstyles.yellow14regular,)
       ,
-      ),body: SingleChildScrollView(
+      )
+    ,body: SingleChildScrollView(child:
+    BlocConsumer<AuthCubit, AuthState>(
+    listener: (context, state) {
+    if (state is AuthError) {
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(state.message)));
+    }
+
+    if (state is AuthSuccess) {
+    Navigator.push(context,AppRoutes.home);
+
+    }
+    },
+    builder: (context, state) {
+      return SingleChildScrollView(
         child: Column(
             children: [
-              Container(child:CarouselSlider.builder(
+              Container(child: CarouselSlider.builder(
                 itemCount: avatarList.length,
                 itemBuilder: (context, index, realIndex) {
                   return Center(
                     child: ClipOval(
-                      child: InkWell(onTap: (){
-                        selectedAvatar=avatarList[index];
+                      child: InkWell(onTap: () {
+                        selectedAvatar = avatarList[index];
                         setState(() {
-
+        
                         });
                       },
                         child: Image.asset(
                           avatarList[index],
                           width: 200,
                           height: 200,
-                                
+        
                           fit: BoxFit.cover,
                         ),
                       ),
                     ),
                   );
-        
-        
                 },
                 options: CarouselOptions(
-                  height:MediaQuery.of(context).size.height * 0.3
+                  height: MediaQuery
+                      .of(context)
+                      .size
+                      .height * 0.3
                   ,
                   autoPlay: false,
                   enlargeCenterPage: true,
@@ -90,182 +114,92 @@ String selectedAvatar="assets/images/Component 11 – 2.png";
               ),
               SizedBox(height: 20,),
               CustomTextField(controller: nameController,
-
-                hint: Appstrings.name,prefixIcon: Image.asset(Appassets.name),),
-              CustomTextField(controller: emailController,
-                  hint: Appstrings.email,prefixIcon: Image.asset(Appassets.email)),
-
-
-              CustomTextField(
-                controller:passwordController,
-                hint: Appstrings.password,prefixIcon: Image.asset(Appassets.password),
-                suffixIcon: Image.asset(Appassets.eyeOff),),
-
-
-              CustomTextField(controller: confirm_passwordController,
-                hint: Appstrings.confirmPassword,prefixIcon: Image.asset(Appassets.password),
-                suffixIcon: Image.asset(Appassets.eyeOff),),
-
-
-              CustomTextField(controller: phoneController,
-                hint: Appstrings.phone,prefixIcon: Image.asset(Appassets.phone),),
-
-
-
-      CustomElevatedButton(text: Appstrings.createAccount,onClick:()async {
-registerUser();})
-      //   try {
-      //     showLoading(context);
-      //     final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-      //       email: emailController.text,
-      //       password: passwordController.text,
-      //     );
-      //     UserDM.currentUser=UserDM(id: credential.user!.uid,
-      //         email: emailController.text,
-      //         name: nameController.text,
-      //         avatar:selectedAvatar ,
-      //
-      //         favouriteEvents: [],
-      //         phoneNumber: phoneController.text
-      //     );
-      //
-      //     ///creating doc in fire store=====================
-      //     createUserInFireStore(UserDM.currentUser!);
-      //
-      //     Navigator.pop(context);
-      //     Navigator.push(context, AppRoutes.home);
-      //
-      //   }
-      //   ///// error handling================================
-      //   on FirebaseAuthException catch (e) {
-      //     Navigator.pop(context);
-      //     var message="";
-      //     if (e.code == 'weak-password') {
-      //       message='The password provided is too weak.';
-      //     } else if (e.code == 'email-already-in-use') {
-      //       message='The account already exists for that email.';
-      //     }
-      //     else {message=e.message??"some thing went wrong";}
-      //     showMessage(context, message, title: "Error",posText: "ok");
-      //   } catch (e) {
-      //     print(e);
-      //   }
-      //
-      // } ,),
-              ,SizedBox(height: 20),
-      Center(
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: Appcolors.yellow),
-          ),
-          width: 90,
-          height: 40,
-          child: Row(
-            children: [
-              CircleAvatar(
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: isSelected
-                          ? Appcolors.yellow
-                          : Colors.transparent,
-                    ),
-                  ),
-                  child: Image.asset(Appassets.LR),
-                ),
-              ),
-              Spacer(),
-
-              CircleAvatar(
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: isSelected
-                          ? Appcolors.yellow
-                          : Colors.transparent,
-                    ),
-                  ),
-                  child: Image.asset(Appassets.Eg),
-                ),
-              ),
-            ],
-          ),
-        ),
         
-
-          ),]
-      )
-        )
+                hint: Appstrings.name, prefixIcon: Image.asset(Appassets.name),),
+              CustomTextField(controller: emailController,
+                  hint: Appstrings.email,
+                  prefixIcon: Image.asset(Appassets.email)),
+        
+        
+              CustomTextField(
+                controller: passwordController,
+                hint: Appstrings.password,
+                prefixIcon: Image.asset(Appassets.password),
+                suffixIcon: Image.asset(Appassets.eyeOff),),
+        
+        
+              CustomTextField(controller: confirm_passwordController,
+                hint: Appstrings.confirmPassword,
+                prefixIcon: Image.asset(Appassets.password),
+                suffixIcon: Image.asset(Appassets.eyeOff),),
+        
+        
+              CustomTextField(controller: phoneController,
+                hint: Appstrings.phone,
+                prefixIcon: Image.asset(Appassets.phone),),
+        
+        
+              CustomElevatedButton(text: Appstrings.createAccount,
+        
+                  onClick: () async {
+                    context.read<AuthCubit>().register(
+                      email: emailController.text.trim(),
+                      password: passwordController.text.trim(),
+                      name: nameController.text.trim(),
+                      phone: phoneController.text.trim(),
+                    );
+                  })
+        
+              , SizedBox(height: 20),
+              Center(
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(color: Appcolors.yellow),
+                  ),
+                  width: 90,
+                  height: 40,
+                  child: Row(
+                    children: [
+                      CircleAvatar(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: isSelected
+                                  ? Appcolors.yellow
+                                  : Colors.transparent,
+                            ),
+                          ),
+                          child: Image.asset(Appassets.LR),
+                        ),
+                      ),
+                      Spacer(),
+        
+                      CircleAvatar(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: isSelected
+                                  ? Appcolors.yellow
+                                  : Colors.transparent,
+                            ),
+                          ),
+                          child: Image.asset(Appassets.Eg),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+        
+        
+              ),
+            ]
+        ),
+      );
+    })
+    )
     );
   }
 
-  Future<void> registerUser() async {
-    // 1️⃣ Validate inputs
-    if (nameController.text.isEmpty ||
-        phoneController.text.isEmpty ||
-        selectedAvatar == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Please fill all fields and select an avatar')),
-      );
-      return; // stop execution
-    }
 
-    try {
-      showLoading(context); // show loading dialog
-
-      String uid;
-      String email;
-
-      if (widget.googleUser != null) {
-        // Google user → already authenticated
-        uid = widget.googleUser!.uid;
-        email = widget.googleUser!.email!;
-        emailController.text=email;
-      } else {
-        // Regular email/password registration
-        final credential = await FirebaseAuth.instance
-            .createUserWithEmailAndPassword(
-          email: emailController.text,
-          password: passwordController.text,
-        );
-        uid = credential.user!.uid;
-        email = emailController.text;
-      }
-
-      // 2️⃣ Create UserDM
-      UserDM.currentUser = UserDM(
-        id: uid,
-        email: email,
-        name: nameController.text,
-        avatar: selectedAvatar!,
-        phoneNumber: phoneController.text,
-        favouriteEvents: [],
-      );
-
-      // 3️⃣ Save user to Firestore
-      await createUserInFireStore(UserDM.currentUser!);
-
-      Navigator.pop(context); // close loading dialog
-      Navigator.pushReplacement(context, AppRoutes.home);
-    }
-    // 4️⃣ Firebase Auth Errors
-    on FirebaseAuthException catch (e) {
-      Navigator.pop(context);
-      var message = '';
-      if (e.code == 'weak-password') {
-        message = 'The password provided is too weak.';
-      } else if (e.code == 'email-already-in-use') {
-        message = 'The account already exists for that email.';
-      } else {
-        message = e.message ?? "Something went wrong";
-      }
-      showMessage(context, message, title: "Error", posText: "OK");
-    }
-    // 5️⃣ Other errors
-    catch (e) {
-      Navigator.pop(context);
-      showMessage(context, e.toString(), title: "Error", posText: "OK");
-    }
-  }
   }

@@ -31,10 +31,8 @@ abstract final class AppRoutes {
       MaterialPageRoute(builder: (_) => BoardingFive());
   static MaterialPageRoute get login =>
       MaterialPageRoute(builder: (_) => LoginScreen());
-  static MaterialPageRoute get register =>
-      MaterialPageRoute(builder: (_) => RegisterScreen());
-  static MaterialPageRoute get forgotPassword =>
-      MaterialPageRoute(builder: (_) => ForgetScreen());
+
+
   static MaterialPageRoute get home =>
       MaterialPageRoute(builder: (_) => HomeScreen());
 }
