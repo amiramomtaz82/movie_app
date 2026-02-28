@@ -46,7 +46,7 @@
 
   static const String branding = 'assets/images/Mask group.png';
   static const String onBoarding = 'assets/images/OnBoarding.png';
-  static const String profile = 'assets/images/Profil.png';
+  static const String profile = 'assets/images/Profiel.png';
 
   static const String theGodfather1 = 'assets/images/The Godfather 1.png';
 

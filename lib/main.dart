@@ -7,6 +7,7 @@ import 'package:movie_app/provider/theme_provider.dart';
 import 'package:movie_app/ui/presentaion/cubit_auth.dart';
 import 'package:movie_app/ui/screens/Authentication/login_screen.dart';
 import 'package:movie_app/ui/screens/bording/on_bording_screen.dart';
+import 'package:movie_app/ui/screens/home/home_screen.dart';
 import 'package:movie_app/ui/screens/splash_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -54,7 +55,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: LoginScreen(),
+        home: HomeScreen(),
       ),
     );
   }
