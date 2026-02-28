@@ -32,7 +32,8 @@ abstract final class Appstyles {
 
   static final TextStyle white16Reg= TextStyle(
       color: Appcolors.white, fontWeight: FontWeight.w400, fontSize: 16,decoration: TextDecoration.none,);
-
+  static final TextStyle white20bold= TextStyle(
+    color: Appcolors.white, fontWeight: FontWeight.w700, fontSize: 20,decoration: TextDecoration.none,);
   static final TextStyle white24Med= TextStyle(
       color: Appcolors.white, fontWeight: FontWeight.w600, fontSize: 24,decoration: TextDecoration.none,);
 

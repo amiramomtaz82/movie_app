@@ -38,7 +38,17 @@ static const String createOne="Create One";
 static const String createAccount="Create Account";
 static const String register="Register";
 static const String or="OR";
+static const String actions="Actions";
+static const String adventure="Adventure";
+static const String animation="Animations";
+
+static const String seeMore="see more";
+static const String wishList="Wish List";
+static const String editProfile="Edit Profile";
+static const String exist="Exit";
+static const String history="History";
 static const String loginWithGoogle="Login with Google";
+static const String search="Search";
 
 }
 List <String> avatarList =[
@@ -50,5 +60,15 @@ List <String> avatarList =[
   "assets/images/Component 11 – 6.png",
   "assets/images/Component 11 – 7.png",
 
+
+];
+
+List <String> movieList=[
+  Appassets.image1917,
+  Appassets.theGodfather1,
+  Appassets.badBoys,
+  Appassets.image1917,
+  Appassets.theGodfather1,
+  Appassets.badBoys,
 
 ];

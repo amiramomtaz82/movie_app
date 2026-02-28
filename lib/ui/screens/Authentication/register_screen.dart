@@ -147,6 +147,7 @@ String selectedAvatar="assets/images/Component 11 – 2.png";
                       password: passwordController.text.trim(),
                       name: nameController.text.trim(),
                       phone: phoneController.text.trim(),
+                      image: selectedAvatar,
                     );
                   })
         

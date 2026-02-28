@@ -24,6 +24,7 @@ class AuthRepositoryImpl implements AuthRepository {
     required String password,
     required String name,
     required String phone,
+    required String image,
   }) async {
     final cred = await auth.register(email, password);
 
@@ -32,7 +33,7 @@ class AuthRepositoryImpl implements AuthRepository {
       email: email,
       name: name,
       phone: phone,
-      image: null,
+      image: image,
       favoriteMovies: [],
         historyMovies:[]
     );

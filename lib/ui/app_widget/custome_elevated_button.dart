@@ -42,11 +42,11 @@ class CustomElevatedButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            if (icon != null) ...[icon!, SizedBox(width: 12)],
+
             Text(
               text,
               style: Appstyles.black20med.copyWith(color: textColor),
-            ),
+            ), if (icon != null) ...[SizedBox(width: 4),icon!, ],
           ],
         ),
       ),
