@@ -8,7 +8,12 @@ class AuthNeedsRegistration extends AuthState {
 
   AuthNeedsRegistration(this.email);
 }
+class AuthAuthenticated extends AuthState {
+  final UserDM user;
+  AuthAuthenticated(this.user);
+}
 
+class AuthUnauthenticated extends AuthState {}
 class AuthLoading extends AuthState {}
 
 class AuthSuccess extends AuthState {

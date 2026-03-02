@@ -41,9 +41,12 @@ static const String or="OR";
 static const String actions="Actions";
 static const String adventure="Adventure";
 static const String animation="Animations";
-
+static const String pickAvatar="Pick Avatar";
 static const String seeMore="see more";
 static const String wishList="Wish List";
+static const String deleteAccount="Delete Account";
+static const String updateData="Update Data";
+static const String resetPassword="Reset Password";
 static const String editProfile="Edit Profile";
 static const String exist="Exit";
 static const String history="History";
@@ -52,13 +55,16 @@ static const String search="Search";
 
 }
 List <String> avatarList =[
+Appassets.photo1,
+  Appassets.photo2,
+  Appassets.photo3,
+  Appassets.photo4,
+  Appassets.photo5,
+  Appassets.photo6,
+  Appassets.photo7,
+  Appassets.photo8,
+  Appassets.photo4,
 
-"assets/images/Component 11 – 1.png",
-  "assets/images/Component 11 – 2.png",
-  "assets/images/Component 11 – 4.png",
-  "assets/images/Component 11 – 5.png",
-  "assets/images/Component 11 – 6.png",
-  "assets/images/Component 11 – 7.png",
 
 
 ];

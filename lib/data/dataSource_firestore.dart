@@ -8,12 +8,14 @@ class FirestoreDataSource {
     await firestore.collection("users").doc(user.id).set(user.toJson());
   }
 
-  Future<UserDM> getUser(String uid) async {
-    final doc = await firestore.collection("users").doc(uid).get();
 
-    if (!doc.exists) throw Exception("User not found");
-
-    return UserDM.fromJson(doc.data()!);
+  Future<UserDM?> getUser(String uid) async {
+    final doc = await firestore.collection('users').doc(uid).get();
+    if (doc.exists) {
+      return UserDM.fromJson(doc.data()!);
+    } else {
+      return null;
+    }
   }
   Future <bool> checkUserExists(String uid) async {
     final doc = await FirebaseFirestore.instance

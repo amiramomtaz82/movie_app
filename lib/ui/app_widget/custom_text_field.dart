@@ -10,10 +10,12 @@ class CustomTextField extends StatelessWidget {
   final bool isPassword;
   final int minLines;
   final TextEditingController? controller;
-  FormFieldValidator<String?>? validator;
+  FormFieldValidator<String?>?  validator;
+ final void Function (String)? onChanged;
 
   CustomTextField({
     super.key,
+    this.onChanged,
     this.validator,
     this.prefixIcon,
     this.suffixIcon,
@@ -34,6 +36,7 @@ class CustomTextField extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: TextFormField(style: Appstyles.white16Reg,
         validator: validator,
+
         decoration: InputDecoration(
           hintText: hint,
           hintStyle: Appstyles.white16Reg,

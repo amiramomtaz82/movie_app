@@ -28,7 +28,7 @@ class AuthCubit extends Cubit<AuthState> {
   }) async {
     try {
       emit(AuthLoading());
-      final user = await repo.register(
+      final UserDM user= await repo.register(
         email: email,
         password: password,
         name: name,
@@ -42,23 +42,31 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  Future<void> googleLogin() async {
+  Future<void> loginWithGoogle() async {
+    emit(AuthLoading());
+    print("Google login started"); // 🔹
     try {
-      emit(AuthLoading());
-
-      final result = await repo.signInWithGoogle();
-
-      if (result is UserDM) {
-        // existing user
-        emit(AuthSuccess(result));
-      } else if (result is String) {
-        // 🔥 new user → go register
-        emit(AuthNeedsRegistration(result));
+      final user = await repo.signInWithGoogle();
+      print("Google user: $user"); // 🔹
+      if (user != null) {
+        UserDM.currentUser = user;
+        emit(AuthAuthenticated(user));
+      } else {
+        emit(AuthUnauthenticated());
       }
     } catch (e) {
+      print("Google login error: $e"); // 🔹
       emit(AuthError(e.toString()));
     }
   }
+
+
+
+
+
+
+
+
 
   Future<void> resetPassword(String email) async {
     try {

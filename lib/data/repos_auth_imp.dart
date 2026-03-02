@@ -1,3 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:movie_app/data/user_dataModel.dart';
 
 import '../domain/repos_auth.dart';
@@ -14,9 +17,14 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<UserDM> login(String email, String password) async {
     final cred = await auth.login(email, password);
-    return firestore.getUser(cred.user!.uid);
-  }
+    final user = await firestore.getUser(cred.user!.uid);
 
+    if (user == null) {
+      throw Exception("User not found in Firestore");
+    }
+
+    return user;
+  }
   // REGISTER
   @override
   Future<UserDM> register({
@@ -29,13 +37,13 @@ class AuthRepositoryImpl implements AuthRepository {
     final cred = await auth.register(email, password);
 
     final user = UserDM(
-      id: cred.user!.uid,
-      email: email,
-      name: name,
-      phone: phone,
-      image: image,
-      favoriteMovies: [],
-        historyMovies:[]
+        id: cred.user!.uid,
+        email: email,
+        name: name,
+        phone: phone,
+        image: image,
+        favoriteMovies: [],
+        historyMovies: []
     );
 
     await firestore.createUser(user);
@@ -44,19 +52,38 @@ class AuthRepositoryImpl implements AuthRepository {
 
   // GOOGLE
   @override
-  Future<dynamic> signInWithGoogle() async {
-    final cred = await auth.signInWithGoogle();
+  // Future<dynamic> signInWithGoogle() async {
 
-    final firebaseUser = cred.user!;
+  //
+  //
+  //
+  //
+  //   }
 
-    try {
-      return await firestore.getUser(firebaseUser.uid);
-    } catch (_) {
-      return firebaseUser.email;
 
+
+
+  @override
+  // Future<dynamic> signInWithGoogle() async {
+  //
+  //   final GoogleSignIn googleSignIn = GoogleSignIn();
+  //   await googleSignIn.signOut();
+  //   final UserCredential cred = await auth.signInWithGoogleAuth();
+  //   final user = cred.user!;
+  //
+  //   // Use your custom FirestoreDataSource
+  //   final existingUser = await firestore.getUser(user.uid);
+  //
+  //   if (existingUser != null) {
+  //     return existingUser; // UserDM
+  //   } else {
+  //     return user.email ?? ""; // new user
+  //   }
+  // }
+
+  Future<UserDM?> signInWithGoogle() async {
+    return await auth.signInWithGoogle();
   }
-  }
-
   @override
   Future<void> resetPassword(String email) =>
       auth.resetPassword(email);

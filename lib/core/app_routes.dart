@@ -11,6 +11,7 @@ import 'package:movie_app/ui/screens/bording/boarding_two.dart';
 import 'package:movie_app/ui/screens/bording/on_bording_screen.dart';
 
 import '../ui/screens/home/home_screen.dart';
+import '../ui/screens/home/profile_tab/upadte_profile.dart';
 import '../ui/screens/splash_screen.dart';
 
 abstract final class AppRoutes {
@@ -31,6 +32,8 @@ abstract final class AppRoutes {
       MaterialPageRoute(builder: (_) => BoardingFive());
   static MaterialPageRoute get login =>
       MaterialPageRoute(builder: (_) => LoginScreen());
+  static MaterialPageRoute get updateProfile =>
+      MaterialPageRoute(builder: (_) =>UpadteProfile());
 
 
   static MaterialPageRoute get home =>

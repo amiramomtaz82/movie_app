@@ -22,21 +22,19 @@
   static const String availableNow = 'assets/images/Available Now.png';
   static const String badBoys = 'assets/images/bad boys.png';
 
-  static const String component11_1 = 'assets/images/Component 11 - 1.png';
-  static const String component11_2 = 'assets/images/Component 11 - 2.png';
-  static const String component11_4 = 'assets/images/Component 11 - 4.png';
-  static const String component11_5 = 'assets/images/Component 11 - 5.png';
-  static const String component11_6 = 'assets/images/Component 11 - 6.png';
-  static const String component11_7 = 'assets/images/Component 11 - 7.png';
-  static const String component11_8 = 'assets/images/Component 11 - 8.png';
-  static const String component11_9 = 'assets/images/Component 11 - 9.png';
-  static const String component11_10 = 'assets/images/Component 11 - 10.png';
 
   static const String empty1 = 'assets/images/Empty 1.png';
   static const String explore = 'assets/images/explore.png';
   static const String forgotPassword = 'assets/images/Forgot password-bro 1.png';
-
   static const String group13 = 'assets/images/Group 13.png';
+  static const String photo1 = 'assets/images/photo1.png';
+  static const String photo2 = 'assets/images/photo2.png';
+  static const String photo3= 'assets/images/photo3.png';
+  static const String photo4= 'assets/images/photo4.png';
+  static const String photo5 = 'assets/images/photo5.png';
+  static const String photo6 = 'assets/images/photo6.png';
+  static const String photo7 = 'assets/images/photo7.png';
+  static const String photo8= 'assets/images/photo8.png';
   static const String group14 = 'assets/images/Group 14.png';
   static const String group16 = 'assets/images/Group 16.png';
   static const String group21 = 'assets/images/Group 21.png';

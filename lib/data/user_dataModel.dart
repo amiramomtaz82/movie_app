@@ -1,4 +1,5 @@
 class UserDM {
+  static UserDM? currentUser;
   final String id;
   final String email;
   final String name;
@@ -18,12 +19,12 @@ class UserDM {
   });
 
   factory UserDM.fromJson(Map<String, dynamic> json) {
-    return UserDM(
-      id: json['id'],
-      email: json['email'],
-      name: json['name'],
-      phone: json['phone'],
-      image: json['image'],
+    return   UserDM(
+      id: json['id'] ?? '',                     // fallback to empty string
+      email: json['email'] ?? '',
+      name: json['name'] ?? '',
+      phone: json['phone'] ?? '',
+      image: json['image'] ?? '',               // previously nullable
       favoriteMovies: List<String>.from(json['favoriteMovies'] ?? []),
       historyMovies: List<String>.from(json['historyMovies'] ?? []),
     );
