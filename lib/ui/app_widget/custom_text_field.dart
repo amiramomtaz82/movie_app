@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/core/app_text_style.dart';
+import 'package:movie_app/core/utilis/app_text_style.dart';
 
-import '../../core/app_colors.dart';
+import '../../core/utilis/app_colors.dart';
 
 class CustomTextField extends StatelessWidget {
   final Widget? prefixIcon;

@@ -23,8 +23,10 @@ class UserDM {
       id: json['id'] ?? '',                     // fallback to empty string
       email: json['email'] ?? '',
       name: json['name'] ?? '',
-      phone: json['phone'] ?? '',
-      image: json['image'] ?? '',               // previously nullable
+      phone: json['phone'] ??"",
+      image: (json['image'] != null && json['image'].toString().isNotEmpty)
+          ? json['image']
+          : null,               // previously nullable
       favoriteMovies: List<String>.from(json['favoriteMovies'] ?? []),
       historyMovies: List<String>.from(json['historyMovies'] ?? []),
     );

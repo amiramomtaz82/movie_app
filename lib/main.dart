@@ -11,13 +11,15 @@ import 'package:movie_app/ui/screens/home/home_screen.dart';
 import 'package:movie_app/ui/screens/splash_screen.dart';
 import 'package:provider/provider.dart';
 
+import 'core/di/di.dart';
 import 'data/dataSource_firebase_auth.dart';
 import 'data/dataSource_firestore.dart';
 import 'data/repos_auth_imp.dart';
-import 'domain/repos_auth.dart';
+import 'domain/reopsotries/repos_auth.dart';
 import 'firebase_options.dart';
 
 void main()async {
+  initDependencies();
 
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -55,7 +57,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: LoginScreen(),
+        home:HomeScreen(),
       ),
     );
   }

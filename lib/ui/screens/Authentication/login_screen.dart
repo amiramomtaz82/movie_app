@@ -3,11 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:movie_app/core/app_assets.dart';
-import 'package:movie_app/core/app_colors.dart';
-import 'package:movie_app/core/app_constant.dart';
-import 'package:movie_app/core/app_routes.dart';
-import 'package:movie_app/core/app_text_style.dart';
+import 'package:movie_app/core/utilis/app_assets.dart';
+import 'package:movie_app/core/utilis/app_colors.dart';
+import 'package:movie_app/core/utilis/app_constant.dart';
+import 'package:movie_app/core/utilis/app_routes.dart';
+import 'package:movie_app/core/utilis/app_text_style.dart';
 
 import 'package:movie_app/ui/app_widget/custom_text_field.dart';
 import 'package:movie_app/ui/app_widget/custome_elevated_button.dart';
@@ -84,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Image.asset(Appassets.logo, height: 250, width: 250),
 
                     CustomTextField(
-                      validator: Validation.validateEmail,
+
                       controller: emailController,
                     hint: Appstrings.email,
                     prefixIcon: Image.asset(Appassets.email),

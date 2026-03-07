@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../data/user_dataModel.dart';
+import '../../data/user_dataModel.dart';
 
 
 abstract class AuthRepository {
@@ -20,4 +20,6 @@ abstract class AuthRepository {
   Future<void> resetPassword(String email);
 
   Future<void> logout();
+
+  Future<void> updateUser(String uid, Map<String, dynamic> data);
 }

@@ -1,11 +1,11 @@
 import 'package:carousel_slider_plus/carousel_slider_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:movie_app/core/app_assets.dart';
-import 'package:movie_app/core/app_colors.dart';
-import 'package:movie_app/core/app_text_style.dart';
+import 'package:movie_app/core/utilis/app_assets.dart';
+import 'package:movie_app/core/utilis/app_colors.dart';
+import 'package:movie_app/core/utilis/app_text_style.dart';
 import 'package:movie_app/ui/screens/home/home_tab/image_view.dart';
 
-import '../../../../core/app_constant.dart';
+import '../../../../core/utilis/app_constant.dart';
 
 class HomeTab extends StatefulWidget {
   const HomeTab({Key? key}) : super(key: key);

@@ -1,6 +1,7 @@
-import 'package:movie_app/core/app_assets.dart';
+import 'package:movie_app/core/utilis/app_assets.dart';
 
 abstract class Appstrings{
+  static const String apiBaseUrl= "https://movies-api.accel.li/api/v2/";
 
 static const String brandTitle="Supervised by Mohamed Nabil";
 

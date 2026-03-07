@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/user_dataModel.dart';
-import '../../domain/repos_auth.dart';
+import '../../domain/reopsotries/repos_auth.dart';
 import 'cubit_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
@@ -13,11 +13,13 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       emit(AuthLoading());
       final user = await repo.login(email, password);
+      UserDM.currentUser = user;
       emit(AuthSuccess(user));
     } catch (e) {
       emit(AuthError(e.toString()));
     }
   }
+
 
   Future<void> register({
     required String email,
@@ -28,12 +30,12 @@ class AuthCubit extends Cubit<AuthState> {
   }) async {
     try {
       emit(AuthLoading());
-      final UserDM user= await repo.register(
-        email: email,
-        password: password,
-        name: name,
-        phone: phone,
-        image: image
+      final UserDM user = await repo.register(
+          email: email,
+          password: password,
+          name: name,
+          phone: phone,
+          image: image
 
       );
       emit(AuthSuccess(user));
@@ -59,27 +61,50 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthError(e.toString()));
     }
   }
+    /// Update profile (name, phone, optional avatar)
+    Future<void> updateUser({
+      required String name,
+      required String phone,
+      String? avatar,
+    }) async {
+      final currentUser = UserDM.currentUser;
 
+      if (currentUser == null) {
+        emit(AuthError("No logged in user"));
+        return;
+      }
 
-
-
-
-
-
-
-
-  Future<void> resetPassword(String email) async {
-    try {
       emit(AuthLoading());
-      await repo.resetPassword(email);
+
+      try {
+        final data = {
+          "name": name,
+          "phone": phone,
+          if (avatar != null) "image": avatar,
+        };
+
+        await repo.updateUser(currentUser.id, data);
+
+        emit(AuthSuccess(UserDM.currentUser!));
+      } catch (e) {
+        emit(AuthError(e.toString()));
+      }
+    }
+
+
+    Future<void> resetPassword(String email) async {
+      try {
+        emit(AuthLoading());
+        await repo.resetPassword(email);
+        emit(AuthInitial());
+      } catch (e) {
+        emit(AuthError(e.toString()));
+      }
+    }
+
+
+    Future<void> logout() async {
+      await repo.logout();
       emit(AuthInitial());
-    } catch (e) {
-      emit(AuthError(e.toString()));
     }
   }
-
-  Future<void> logout() async {
-    await repo.logout();
-    emit(AuthInitial());
-  }
-}

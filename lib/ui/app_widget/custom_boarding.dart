@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/core/app_assets.dart';
-import 'package:movie_app/core/app_colors.dart';
-import 'package:movie_app/core/app_constant.dart';
-import 'package:movie_app/core/app_routes.dart';
-import 'package:movie_app/core/app_text_style.dart';
+import 'package:movie_app/core/utilis/app_assets.dart';
+import 'package:movie_app/core/utilis/app_colors.dart';
+import 'package:movie_app/core/utilis/app_constant.dart';
+import 'package:movie_app/core/utilis/app_routes.dart';
+import 'package:movie_app/core/utilis/app_text_style.dart';
 import 'package:movie_app/ui/app_widget/custome_elevated_button.dart';
 
 class CustomBoarding extends StatelessWidget {
@@ -37,6 +37,18 @@ class CustomBoarding extends StatelessWidget {
             height: double.infinity,
             width: double.infinity,
             fit: BoxFit.cover,
+          ), Container(decoration: BoxDecoration(gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Appcolors.black.withOpacity(0.5),
+              // Start with slight opacity
+              Colors.black.withOpacity(.5,)
+            ],
+          ),
+
+
+          )
           ),
 
           Align(

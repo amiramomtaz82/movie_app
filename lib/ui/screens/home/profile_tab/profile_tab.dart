@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/core/app_assets.dart';
-import 'package:movie_app/core/app_colors.dart';
-import 'package:movie_app/core/app_constant.dart';
-import 'package:movie_app/core/app_routes.dart';
-import 'package:movie_app/core/app_text_style.dart';
+import 'package:movie_app/core/utilis/app_assets.dart';
+import 'package:movie_app/core/utilis/app_colors.dart';
+import 'package:movie_app/core/utilis/app_constant.dart';
+import 'package:movie_app/core/utilis/app_routes.dart';
+import 'package:movie_app/core/utilis/app_text_style.dart';
+import 'package:movie_app/data/user_dataModel.dart';
 import 'package:movie_app/ui/app_widget/custome_elevated_button.dart';
 
 class ProfileTab extends StatelessWidget {
@@ -25,30 +26,40 @@ class ProfileTab extends StatelessWidget {
         
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    child: Row(
                       children: [
-                      Column(children: [
-                        ClipRRect(borderRadius: BorderRadius.circular(60),
-                            child: Image.asset(avatarList[0],))
-                        ,SizedBox(height: 20,),
-                      Text("Amira",style: Appstyles.white20bold,)
-                      ],),
-        
-                      Column(mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text("${movieList.length}",style: Appstyles.white36Med),
-                          SizedBox(height: 10,),
-                          Text(Appstrings.wishList,style: Appstyles.white24Med)
-        
-                        ],
+
+                        Expanded(
+                          child: Column(children: [
+                          ClipRRect(borderRadius: BorderRadius.circular(60),
+                              child:_buildProfileImage())
+
+                          ,
+                    SizedBox(height: 20,),
+                            Text(UserDM.currentUser!.name??"gest",
+                              style: Appstyles.white20bold,)
+                                                  ],),
+                        ),
+
+                      Expanded(
+                        child: Column(mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text("${movieList.length}",style: Appstyles.white36Med),
+                            SizedBox(height: 10,),
+                            Text(Appstrings.wishList,style: Appstyles.white24Med)
+
+                          ],
+                        ),
                       ),
-                      Column(
-                        children: [
-                          Text("${movieList.length}",style: Appstyles.white36Med,),
-                          SizedBox(height: 10,),
-                          Text(Appstrings.history,style: Appstyles.white24Med,)
-        
-                        ],
+                      Expanded(
+                        child: Column(
+                          children: [
+                            Text("${movieList.length}",style: Appstyles.white36Med,),
+                            SizedBox(height: 10,),
+                            Text(Appstrings.history,style: Appstyles.white24Med,)
+
+                          ],
+                        ),
                       )
                     ],),
                   ),
@@ -92,6 +103,37 @@ Navigator.push(context,AppRoutes.updateProfile);
           ],
         ),
       ),
+    );
+  }
+  Widget _buildProfileImage() {
+    final user = UserDM.currentUser;
+
+    if (user == null) {
+      // ⏳ While loading or not set
+      return Image.asset(
+        Appassets.photo2,
+        width: 100,
+        height: 100,
+        fit: BoxFit.cover,
+      );
+    }
+
+    final image = user.image;
+
+    if (image == null || image.isEmpty || image.startsWith("http")) {
+      return Image.asset(
+        Appassets.photo2,
+        width: 100,
+        height: 100,
+        fit: BoxFit.cover,
+      );
+    }
+
+    return Image.asset(
+      image,
+      width: 100,
+      height: 100,
+      fit: BoxFit.cover,
     );
   }
 }

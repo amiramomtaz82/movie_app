@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:movie_app/data/user_dataModel.dart';
 
-import '../domain/repos_auth.dart';
+import '../domain/reopsotries/repos_auth.dart';
 import 'dataSource_firebase_auth.dart';
 import 'dataSource_firestore.dart';
 
@@ -47,6 +47,8 @@ class AuthRepositoryImpl implements AuthRepository {
     );
 
     await firestore.createUser(user);
+
+    UserDM.currentUser = user;
     return user;
   }
 
@@ -90,4 +92,24 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<void> logout() => auth.logout();
+
+
+
+  @override
+  Future<void> updateUser(String uid, Map<String, dynamic> data) async {
+    await firestore.updateUser(uid, data);
+
+    // Update local currentUser if UID matches
+    if (UserDM.currentUser?.id == uid) {
+      UserDM.currentUser = UserDM(
+        id: UserDM.currentUser!.id,
+        email: UserDM.currentUser!.email,
+        name: data['name'] ?? UserDM.currentUser!.name,
+        phone: data['phone'] ?? UserDM.currentUser!.phone,
+        image: data['image'] ?? UserDM.currentUser!.image,
+        favoriteMovies: UserDM.currentUser!.favoriteMovies,
+        historyMovies: UserDM.currentUser!.historyMovies,
+      );
+    }
+  }
 }

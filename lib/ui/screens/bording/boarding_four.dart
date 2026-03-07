@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/core/app_assets.dart';
-import 'package:movie_app/core/app_constant.dart';
-import 'package:movie_app/core/app_routes.dart';
+import 'package:movie_app/core/utilis/app_assets.dart';
+import 'package:movie_app/core/utilis/app_constant.dart';
+import 'package:movie_app/core/utilis/app_routes.dart';
 import 'package:movie_app/ui/app_widget/custom_boarding.dart';
 
 class BoardingFour extends StatelessWidget {

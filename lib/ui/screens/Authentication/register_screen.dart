@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/core/app_assets.dart';
-import 'package:movie_app/core/app_colors.dart';
-import 'package:movie_app/core/app_constant.dart';
-import 'package:movie_app/core/app_routes.dart';
-import 'package:movie_app/core/app_text_style.dart';
+import 'package:movie_app/core/utilis/app_assets.dart';
+import 'package:movie_app/core/utilis/app_colors.dart';
+import 'package:movie_app/core/utilis/app_constant.dart';
+import 'package:movie_app/core/utilis/app_routes.dart';
+import 'package:movie_app/core/utilis/app_text_style.dart';
 import 'package:carousel_slider_plus/carousel_slider_plus.dart';
 import 'package:movie_app/ui/app_widget/custom_text_field.dart';
 import 'package:movie_app/ui/app_widget/custome_elevated_button.dart';
@@ -123,7 +123,7 @@ String selectedAvatar=avatarList[0];
 
                   hint: Appstrings.name, prefixIcon: Image.asset(Appassets.name),),
                 CustomTextField(
-                    validator: Validation.validateEmail,
+
                     controller: emailController,
                     hint: Appstrings.email,
                     prefixIcon: Image.asset(Appassets.email)),
@@ -164,7 +164,7 @@ String selectedAvatar=avatarList[0];
                 CustomElevatedButton(text: Appstrings.createAccount,
 
                     onClick: () async {
-
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                   if(key.currentState!.validate()){
                       context.read<AuthCubit>().register(
                         email: emailController.text.trim(),
@@ -176,7 +176,7 @@ String selectedAvatar=avatarList[0];
                     }
                 }
                 )
-
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
                 , SizedBox(height: 20),
                 Center(
                   child: Container(

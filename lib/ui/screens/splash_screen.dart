@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/core/app_constant.dart';
-import 'package:movie_app/core/app_routes.dart';
-import 'package:movie_app/core/app_text_style.dart';
+import 'package:movie_app/core/utilis/app_constant.dart';
+import 'package:movie_app/core/utilis/app_routes.dart';
+import 'package:movie_app/core/utilis/app_text_style.dart';
 
-import '../../core/app_assets.dart';
-import '../../core/app_colors.dart';
+import '../../core/utilis/app_assets.dart';
+import '../../core/utilis/app_colors.dart';
 
 class SplashScreen extends StatefulWidget {
 const SplashScreen({Key? key}) : super(key: key);

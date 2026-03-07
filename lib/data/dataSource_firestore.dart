@@ -2,7 +2,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:movie_app/data/user_dataModel.dart';
 
 class FirestoreDataSource {
-  final FirebaseFirestore firestore = FirebaseFirestore.instance;
+  final FirebaseFirestore firestore
+;
+  FirestoreDataSource({FirebaseFirestore? firestore})
+      : firestore = firestore ?? FirebaseFirestore.instance;
+
+  Future<void> updateUser(String uid, Map<String, dynamic> data) async {
+    await firestore.collection('users').doc(uid).update(data);
+  }
+
 
   Future<void> createUser(UserDM user) async {
     await firestore.collection("users").doc(user.id).set(user.toJson());

@@ -10,9 +10,9 @@ import 'package:movie_app/ui/app_widget/custom_boarding.dart';
 import 'package:movie_app/ui/screens/bording/boarding_two.dart';
 import 'package:movie_app/ui/screens/bording/on_bording_screen.dart';
 
-import '../ui/screens/home/home_screen.dart';
-import '../ui/screens/home/profile_tab/upadte_profile.dart';
-import '../ui/screens/splash_screen.dart';
+import '../../ui/screens/home/home_screen.dart';
+import '../../ui/screens/home/profile_tab/upadte_profile.dart';
+import '../../ui/screens/splash_screen.dart';
 
 abstract final class AppRoutes {
   static MaterialPageRoute get splash =>

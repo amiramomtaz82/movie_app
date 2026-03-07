@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/core/app_assets.dart';
-import 'package:movie_app/core/app_colors.dart';
-import 'package:movie_app/core/app_constant.dart';
-import 'package:movie_app/core/app_text_style.dart';
+import 'package:movie_app/core/utilis/app_assets.dart';
+import 'package:movie_app/core/utilis/app_colors.dart';
+import 'package:movie_app/core/utilis/app_constant.dart';
+import 'package:movie_app/core/utilis/app_text_style.dart';
 import 'package:movie_app/ui/app_widget/custom_text_field.dart';
 
 class SearchTab extends StatelessWidget {

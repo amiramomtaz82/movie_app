@@ -42,13 +42,32 @@ dependencies:
   carousel_slider_plus: ^7.1.1
   google_sign_in: ^6.1.5
   flutter_bloc: ^9.1.1
+  flutter_localization: ^0.3.3
+  intl: any
+  google_fonts: ^8.0.2
+  retrofit: ^4.9.2
+  connectivity_plus: ^7.0.0
+  json_annotation: ^4.11.0
+  retrofit_generator: ^10.2.3
+  get_it: ^9.2.1
+  injectable: ^2.7.1+4
+  logger: ^2.6.2
+  pretty_dio_logger: ^1.4.0
+  dio: ^5.9.2
+  flutter_lints: ^6.0.0
+
+  cached_network_image: ^3.4.1
+  icons_launcher: ^3.0.3
+  dots_indicator: ^4.0.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_runner: ^2.11.1
+  json_serializable: ^6.13.0
+  injectable_generator: ^2.12.1
 
 
-  flutter_lints: ^6.0.0
 
 
 
@@ -57,7 +76,7 @@ flutter:
 
 
   uses-material-design: true
-
+  generate: true
   
   assets:
     - assets/images/

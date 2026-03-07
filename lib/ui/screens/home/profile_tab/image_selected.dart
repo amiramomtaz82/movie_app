@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/core/app_colors.dart';
+import 'package:movie_app/core/utilis/app_colors.dart';
 //
 // class ImageSelected extends StatefulWidget {
 //   String image;

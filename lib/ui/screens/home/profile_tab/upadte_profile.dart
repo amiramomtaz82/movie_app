@@ -1,13 +1,19 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:movie_app/core/app_assets.dart';
-import 'package:movie_app/core/app_colors.dart';
-import 'package:movie_app/core/app_constant.dart';
-import 'package:movie_app/core/app_text_style.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/core/utilis/app_assets.dart';
+import 'package:movie_app/core/utilis/app_colors.dart';
+import 'package:movie_app/core/utilis/app_constant.dart';
+import 'package:movie_app/core/utilis/app_text_style.dart';
 import 'package:movie_app/ui/app_widget/custom_text_field.dart';
 import 'package:movie_app/ui/app_widget/custome_elevated_button.dart';
 import 'package:movie_app/ui/screens/home/profile_tab/image_selected.dart';
+
+import '../../../../data/user_dataModel.dart';
+
+import '../../../presentaion/cubit_auth.dart';
+import '../../Authentication/forget_screen.dart';
 
 class UpadteProfile extends StatefulWidget {
   const UpadteProfile({Key? key}) : super(key: key);
@@ -18,7 +24,17 @@ class UpadteProfile extends StatefulWidget {
 
 class _UpadteProfileState extends State<UpadteProfile> {
   int selectedIndex=0;
- String pickedImage= avatarList[2];
+ late TextEditingController nameController;
+ late TextEditingController phoneController;
+ String pickedImage=UserDM.currentUser!.image??avatarList[2];
+
+ @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    nameController=TextEditingController(text: UserDM.currentUser!.name);
+    phoneController=TextEditingController(text:UserDM.currentUser!.phone);
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -71,6 +87,7 @@ class _UpadteProfileState extends State<UpadteProfile> {
 
                                     // 👇 THIS updates main screen
                                     setState(() {
+
                                       pickedImage = avatarList[index];
                                     });
                                   },
@@ -90,10 +107,11 @@ class _UpadteProfileState extends State<UpadteProfile> {
                 ),
               ),
               SizedBox(height: 20),
-              CustomTextField(prefixIcon: Icon(Icons.person), hint: "Amira"),
+              CustomTextField(controller: nameController,
+                  prefixIcon: Icon(Icons.person), hint:""),
               SizedBox(height: 10),
-              CustomTextField(
-                hint: "012345678",
+              CustomTextField(controller: phoneController,
+                hint:"" ,
                 prefixIcon: Image.asset(Appassets.phone),
               ),
 
@@ -101,14 +119,22 @@ class _UpadteProfileState extends State<UpadteProfile> {
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
                   width: double.infinity,
-                  child: Text(
-                    Appstrings.resetPassword,
-                    style: Appstyles.white16Reg,
-                    textAlign: TextAlign.left,
+                  child: InkWell(onTap: (){
+
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                        builder: (_) => ForgetScreen(email:UserDM.currentUser!.email)));
+                  },
+                    child: Text(
+                      Appstrings.resetPassword,
+                      style: Appstyles.white16Reg,
+                      textAlign: TextAlign.left,
+                    ),
                   ),
                 ),
               ),
-              SizedBox(height: 350),
+              SizedBox(height: 300),
               CustomElevatedButton(
                 borderColor: Appcolors.red,
                 backgroundColor: Appcolors.red,
@@ -116,7 +142,17 @@ class _UpadteProfileState extends State<UpadteProfile> {
                 text: Appstrings.deleteAccount,
                 onClick: () {},
               ),
-              CustomElevatedButton(text: Appstrings.updateData, onClick: () {}),
+
+              CustomElevatedButton(
+                text: Appstrings.updateData,
+                onClick: () async {
+                  await context.read<AuthCubit>().updateUser(
+                    name: nameController.text,
+                    phone: phoneController.text,
+                    avatar: pickedImage ?? UserDM.currentUser!.image,
+                  );
+                },
+              ),
             ],
           ),
         ),
