@@ -4,12 +4,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:movie_app/provider/language_provider.dart';
 import 'package:movie_app/provider/theme_provider.dart';
-import 'package:movie_app/ui/presentaion/cubit_auth.dart';
+import 'package:movie_app/ui/presentaion/auth_cubit/cubit_auth.dart';
 import 'package:movie_app/ui/screens/Authentication/login_screen.dart';
 import 'package:movie_app/ui/screens/bording/on_bording_screen.dart';
+import 'package:movie_app/ui/screens/home/browes_tab/browes_tab.dart';
 import 'package:movie_app/ui/screens/home/home_screen.dart';
+import 'package:movie_app/ui/screens/movie_details/movie_details_screen.dart';
 import 'package:movie_app/ui/screens/splash_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+import 'package:webview_flutter_android/webview_flutter_android.dart';
 
 import 'core/di/di.dart';
 import 'data/dataSource_firebase_auth.dart';
@@ -49,6 +53,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    WebViewPlatform.instance = AndroidWebViewPlatform();
     return MultiBlocProvider(
       providers: [
         BlocProvider<AuthCubit>(

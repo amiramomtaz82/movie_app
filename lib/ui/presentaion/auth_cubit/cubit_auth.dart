@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../data/user_dataModel.dart';
-import '../../domain/reopsotries/repos_auth.dart';
+import '../../../data/user_dataModel.dart';
+import '../../../domain/reopsotries/repos_auth.dart';
 import 'cubit_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {

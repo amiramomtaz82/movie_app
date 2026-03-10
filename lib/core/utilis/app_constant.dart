@@ -4,13 +4,39 @@ abstract class Appstrings{
   static const String apiBaseUrl= "https://movies-api.accel.li/api/v2/";
 
 static const String brandTitle="Supervised by Mohamed Nabil";
-
+  static const String similar="Similar";
+  static const String character="Character ";
+  static const String summary="Summary ";
+  static const String cast="Cast ";
+  static const String genres="Genres ";
+  static const String watchNow="Watch Now";
+  static const String screenShot="Screen Shots";
 static const String findYourNext="Find Your Next\n Favorite Movie Here";
 
 static const String getAccess='Get access to a huge library of movies\n to suit all tastes. You will surely like it.'
 ;
 
 static const String explore="Explore Now";
+  static const String action="Action";
+  static const String popularInterests="Popular interests";
+  static const String sciFi="Ski-Fi";
+  static const String comedy="Comedy";
+  static const String crime="Crime";
+  static const String documentary="Documentary";
+  static const String family="Family Crime";
+  static const String Drama="Drama";
+  static const String lifestyle="Lifestyle";
+  static const String romance="Romance";
+  static const String music="music";
+  static const String mystery=" Mystery";
+
+
+
+
+
+  static const String fantasy="Fantasy";
+  static const String horror="Horror";
+
 static const String name="Name";
 static const String confirmPassword="Confirm Password";
 static const String discover="Discover Movies";

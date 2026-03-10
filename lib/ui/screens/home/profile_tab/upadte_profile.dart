@@ -12,7 +12,7 @@ import 'package:movie_app/ui/screens/home/profile_tab/image_selected.dart';
 
 import '../../../../data/user_dataModel.dart';
 
-import '../../../presentaion/cubit_auth.dart';
+import '../../../presentaion/auth_cubit/cubit_auth.dart';
 import '../../Authentication/forget_screen.dart';
 
 class UpadteProfile extends StatefulWidget {

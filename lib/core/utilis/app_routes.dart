@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/domain/models/movieDetails_model.dart';
 import 'package:movie_app/ui/screens/Authentication/forget_screen.dart';
 import 'package:movie_app/ui/screens/Authentication/login_screen.dart';
 import 'package:movie_app/ui/screens/Authentication/register_screen.dart';
@@ -9,9 +10,12 @@ import 'package:movie_app/ui/screens/bording/boarding_one.dart';
 import 'package:movie_app/ui/app_widget/custom_boarding.dart';
 import 'package:movie_app/ui/screens/bording/boarding_two.dart';
 import 'package:movie_app/ui/screens/bording/on_bording_screen.dart';
+import 'package:movie_app/ui/screens/movie_details/movie_details_screen.dart';
+
 
 import '../../ui/screens/home/home_screen.dart';
 import '../../ui/screens/home/profile_tab/upadte_profile.dart';
+import '../../ui/screens/play_movie.dart';
 import '../../ui/screens/splash_screen.dart';
 
 abstract final class AppRoutes {
@@ -38,4 +42,10 @@ abstract final class AppRoutes {
 
   static MaterialPageRoute get home =>
       MaterialPageRoute(builder: (_) => HomeScreen());
+  static Route movieDetails(String movieId) =>
+      MaterialPageRoute(builder: (_) => MovieDetailsScreen(movieId: movieId,));
+
+  static Route moviePlay( String url) =>
+      MaterialPageRoute(builder: (_) =>PlayMovie(url: url));
+
 }

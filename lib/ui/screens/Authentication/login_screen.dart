@@ -11,13 +11,13 @@ import 'package:movie_app/core/utilis/app_text_style.dart';
 
 import 'package:movie_app/ui/app_widget/custom_text_field.dart';
 import 'package:movie_app/ui/app_widget/custome_elevated_button.dart';
-import 'package:movie_app/ui/presentaion/cubit_auth.dart';
+import 'package:movie_app/ui/presentaion/auth_cubit/cubit_auth.dart';
 import 'package:movie_app/ui/screens/Authentication/forget_screen.dart';
 import 'package:movie_app/ui/screens/Authentication/register_screen.dart';
 import 'package:movie_app/ui/screens/Authentication/validation_class.dart';
 
 import '../../../core/show_message.dart';
-import '../../presentaion/cubit_state.dart';
+import '../../presentaion/auth_cubit/cubit_state.dart';
 
 
 class LoginScreen extends StatefulWidget {

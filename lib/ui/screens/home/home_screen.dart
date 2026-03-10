@@ -9,7 +9,7 @@ import 'package:movie_app/ui/screens/home/search_tab/search_tab.dart';
 
 import '../../../core/di/di.dart';
 import '../../../core/utilis/app_assets.dart';
-import '../../presentaion/movie_cubit/movie_cubit.dart';
+import '../../presentaion/movie_cubit/movieDetails_cubit.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -20,7 +20,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int selectedIndex=0;
-  var movieCubit = getIt<MovieCubit>();
+
   List<Widget> selctedScreenTab=[
     HomeTab(),
     SearchTab(),BrowesTab(),ProfileTab()
@@ -29,13 +29,12 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    movieCubit.loadMovies();
+
   }
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-        create: (_) => movieCubit,
-      child: Scaffold(backgroundColor: Appcolors.black,
+    return
+     Scaffold(backgroundColor: Appcolors.black,
         body: selctedScreenTab[selectedIndex],
         bottomNavigationBar: Container(
           padding: EdgeInsets.all(8),
@@ -110,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       )
 
-      ),
+
     );
 
   }

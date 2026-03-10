@@ -15,8 +15,8 @@ import 'package:movie_app/ui/screens/home/home_screen.dart';
 import '../../../core/show_message.dart';
 
 
-import '../../presentaion/cubit_auth.dart';
-import '../../presentaion/cubit_state.dart';
+import '../../presentaion/auth_cubit/cubit_auth.dart';
+import '../../presentaion/auth_cubit/cubit_state.dart';
 
 class RegisterScreen extends StatefulWidget {
   User? googleUser;
