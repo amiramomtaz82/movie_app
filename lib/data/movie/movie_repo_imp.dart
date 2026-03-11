@@ -11,7 +11,7 @@ import '../../core/utilis/extensions/connectivity.dart';
 import '../../domain/reopsotries/movie_repo.dart';
 import '../mappers/movie_mapper.dart';
 
-@Injectable(as: MovieRepo)
+@LazySingleton(as: MovieRepo)
 class MovieRepoImp extends MovieRepo {
   final MovieRemoteDataSource _movieRemoteDataSource;
   final Connectivity _connectivity;

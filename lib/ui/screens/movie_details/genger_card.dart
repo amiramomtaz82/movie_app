@@ -32,7 +32,7 @@ Appstrings.actions,
   Appstrings.Drama,
   Appstrings.comedy,
   Appstrings.crime,
-  Appstrings.popularInterests,
+
 
 
 

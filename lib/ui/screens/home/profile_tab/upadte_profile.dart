@@ -26,14 +26,14 @@ class _UpadteProfileState extends State<UpadteProfile> {
   int selectedIndex=0;
  late TextEditingController nameController;
  late TextEditingController phoneController;
- String pickedImage=UserDM.currentUser!.image??avatarList[2];
+ String pickedImage=UserDM.currentUser?.image??avatarList[2];
 
  @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    nameController=TextEditingController(text: UserDM.currentUser!.name);
-    phoneController=TextEditingController(text:UserDM.currentUser!.phone);
+    nameController=TextEditingController(text: UserDM.currentUser?.name);
+    phoneController=TextEditingController(text:UserDM.currentUser?.phone);
   }
   @override
   Widget build(BuildContext context) {
@@ -124,7 +124,7 @@ class _UpadteProfileState extends State<UpadteProfile> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                        builder: (_) => ForgetScreen(email:UserDM.currentUser!.email)));
+                        builder: (_) => ForgetScreen(email:UserDM.currentUser?.email??"")));
                   },
                     child: Text(
                       Appstrings.resetPassword,
@@ -149,7 +149,7 @@ class _UpadteProfileState extends State<UpadteProfile> {
                   await context.read<AuthCubit>().updateUser(
                     name: nameController.text,
                     phone: phoneController.text,
-                    avatar: pickedImage ?? UserDM.currentUser!.image,
+                    avatar: pickedImage ?? UserDM.currentUser?.image,
                   );
                 },
               ),

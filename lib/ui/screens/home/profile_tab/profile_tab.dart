@@ -36,7 +36,7 @@ class ProfileTab extends StatelessWidget {
 
                           ,
                     SizedBox(height: 20,),
-                            Text(UserDM.currentUser!.name??"gest",
+                            Text(UserDM.currentUser?.name??"guest",
                               style: Appstyles.white20bold,)
                                                   ],),
                         ),

@@ -25,7 +25,9 @@ import '../../domain/usecases/get_movies_usecae.dart' as _i502;
 import '../../domain/usecases/get_similar_movies_useCase.dart' as _i875;
 import '../../domain/usecases/searchMovie_useCase.dart' as _i169;
 import '../../ui/presentaion/movie_cubit/genre_cubit.dart' as _i630;
+import '../../ui/presentaion/movie_cubit/home_tab_cubit/cubit.dart' as _i547;
 import '../../ui/presentaion/movie_cubit/movieDetails_cubit.dart' as _i204;
+import '../../ui/presentaion/search_cubit/search_cubit.dart' as _i909;
 import '../network/api_manager/api_client.dart' as _i937;
 import 'get_it_module.dart' as _i1015;
 
@@ -44,7 +46,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i769.MovieRemoteDataSource>(
       () => _i160.MovieRemoteDataSourceImpl(gh<_i937.ApiClient>()),
     );
-    gh.factory<_i224.MovieRepo>(
+    gh.lazySingleton<_i224.MovieRepo>(
       () => _i184.MovieRepoImp(
         gh<_i769.MovieRemoteDataSource>(),
         gh<_i895.Connectivity>(),
@@ -77,6 +79,15 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i502.GetMoviesUseCase>(),
         gh<_i367.GetMoviesUseCaseByGenre>(),
       ),
+    );
+    gh.factory<_i547.HomeCubit>(
+      () => _i547.HomeCubit(
+        gh<_i502.GetMoviesUseCase>(),
+        gh<_i367.GetMoviesUseCaseByGenre>(),
+      ),
+    );
+    gh.factory<_i909.SearchCubit>(
+      () => _i909.SearchCubit(gh<_i169.SearchMovieUsecase>()),
     );
     return this;
   }
