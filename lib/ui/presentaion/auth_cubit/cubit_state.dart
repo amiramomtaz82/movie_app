@@ -1,8 +1,9 @@
-import '../../../data/user_dataModel.dart';
+import '../../../domain/models/user_dataModel.dart';
 
 abstract class AuthState {}
 
 class AuthInitial extends AuthState {}
+class AuthLoggedOut extends AuthState {}
 class AuthNeedsRegistration extends AuthState {
   final String email;
 

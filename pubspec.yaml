@@ -38,6 +38,9 @@ dependencies:
   firebase_core: ^4.4.0
   firebase_auth: ^6.1.4
   cloud_firestore: ^6.1.2
+  flutter_localizations:
+    sdk: flutter
+
   provider: ^6.1.5+1
   carousel_slider_plus: ^7.1.1
   google_sign_in: ^6.1.5

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:movie_app/data/user_dataModel.dart';
+import 'package:movie_app/domain/models/user_dataModel.dart';
 
 class FirebaseAuthDataSource {
   final FirebaseAuth auth = FirebaseAuth.instance;
@@ -60,12 +60,18 @@ class FirebaseAuthDataSource {
   }
 
   /// Sign out from both Firebase and Google
+  // Simple logout function
   Future<void> signOut() async {
-    try {
-      await auth.signOut();
-      await googleSignIn.signOut();
-    } catch (e) {
-      print("Sign out error: $e");
+    await auth.signOut();
+  }
+
+  // Delete user account
+  Future<void> deleteAccount() async {
+    final user = auth.currentUser;
+    if (user != null) {
+      await user.delete();
+    } else {
+      throw Exception('No user is currently logged in.');
     }
   }
 

@@ -10,10 +10,11 @@ import 'package:movie_app/ui/app_widget/custom_text_field.dart';
 import 'package:movie_app/ui/app_widget/custome_elevated_button.dart';
 import 'package:movie_app/ui/screens/home/profile_tab/image_selected.dart';
 
-import '../../../../data/user_dataModel.dart';
+import '../../../../domain/models/user_dataModel.dart';
 
 import '../../../presentaion/auth_cubit/cubit_auth.dart';
 import '../../Authentication/forget_screen.dart';
+import '../../Authentication/login_screen.dart';
 
 class UpadteProfile extends StatefulWidget {
   const UpadteProfile({Key? key}) : super(key: key);
@@ -26,7 +27,7 @@ class _UpadteProfileState extends State<UpadteProfile> {
   int selectedIndex=0;
  late TextEditingController nameController;
  late TextEditingController phoneController;
- String pickedImage=UserDM.currentUser?.image??avatarList[2];
+ String pickedImage=UserDM.currentUser?.image?? avatarList[2];
 
  @override
   void initState() {
@@ -103,7 +104,8 @@ class _UpadteProfileState extends State<UpadteProfile> {
               },
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(60),
-                  child: Image.asset(pickedImage),
+                  child: Image.asset(pickedImage
+                  ),
                 ),
               ),
               SizedBox(height: 20),
@@ -140,7 +142,19 @@ class _UpadteProfileState extends State<UpadteProfile> {
                 backgroundColor: Appcolors.red,
                 textColor: Appcolors.white,
                 text: Appstrings.deleteAccount,
-                onClick: () {},
+                onClick: ()  async {
+                  try {
+                    await context.read<AuthCubit>().deleteAccount();
+                    Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(builder: (_) => LoginScreen()),
+                          (route) => false,
+                    );
+                  } catch (e) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Error: $e')),
+                    );
+                  }
+                },
               ),
 
               CustomElevatedButton(

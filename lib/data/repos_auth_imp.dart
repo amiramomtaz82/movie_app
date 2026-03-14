@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:movie_app/data/user_dataModel.dart';
+import 'package:movie_app/domain/models/user_dataModel.dart';
 
 import '../domain/reopsotries/repos_auth.dart';
 import 'dataSource_firebase_auth.dart';

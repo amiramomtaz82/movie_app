@@ -17,6 +17,7 @@ import '../../../core/show_message.dart';
 
 import '../../presentaion/auth_cubit/cubit_auth.dart';
 import '../../presentaion/auth_cubit/cubit_state.dart';
+import '../../presentaion/lacal_cubit/local_cubit.dart';
 
 class RegisterScreen extends StatefulWidget {
   User? googleUser;
@@ -52,6 +53,11 @@ String selectedAvatar=avatarList[0];
   }
   @override
   Widget build(BuildContext context) {
+
+    final bool isSelectedAR = context.watch<LocaleCubit>().currentLocale.languageCode == 'ar';
+    final isSelectedEN = context.watch<LocaleCubit>().currentLocale.languageCode == 'en';
+
+
     return Scaffold(backgroundColor: Appcolors.black,
       appBar: AppBar(backgroundColor: Appcolors.black,centerTitle: true,
     leading:
@@ -188,38 +194,35 @@ String selectedAvatar=avatarList[0];
                     height: 40,
                     child: Row(
                       children: [
-                        CircleAvatar(
-                          child: Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: isSelected
-                                    ? Appcolors.yellow
-                                    : Colors.transparent,
-                              ),
-                            ),
-                            child: Image.asset(Appassets.LR),
+                        InkWell(
+                          onTap: () {
+                            context.read<LocaleCubit>().changeLanguage(
+                              'ar',
+                            );
+
+                          },
+                          child: CircleAvatar(backgroundColor: isSelectedAR?Appcolors.yellow:Colors.transparent,
+                            child: Image.asset(Appassets.Eg),
                           ),
                         ),
                         Spacer(),
 
-                        CircleAvatar(
-                          child: Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: isSelected
-                                    ? Appcolors.yellow
-                                    : Colors.transparent,
-                              ),
-                            ),
-                            child: Image.asset(Appassets.Eg),
+                        InkWell(
+                          onTap: () {
+                            context.read<LocaleCubit>().changeLanguage(
+                              'en',
+                            );
+
+                          },
+                          child: CircleAvatar(backgroundColor:isSelectedEN? Appcolors.yellow:Colors.transparent,
+                            child: Image.asset(Appassets.LR),
                           ),
                         ),
                       ],
                     ),
                   ),
-
-
                 ),
+
               ]
           ),
         );

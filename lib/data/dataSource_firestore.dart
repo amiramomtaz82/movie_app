@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:movie_app/data/user_dataModel.dart';
+import 'package:movie_app/domain/models/user_dataModel.dart';
 
 class FirestoreDataSource {
   final FirebaseFirestore firestore

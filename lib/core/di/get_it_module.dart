@@ -1,6 +1,7 @@
 
 
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:movie_app/core/utilis/app_constant.dart';
@@ -10,6 +11,12 @@ import 'package:injectable/injectable.dart';
 
 @module
 abstract class GetItModule {
+
+
+  @lazySingleton
+  FirebaseFirestore get firestore => FirebaseFirestore.instance;
+
+
   @singleton
   Connectivity createConnectivity() => Connectivity();
 

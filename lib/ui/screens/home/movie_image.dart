@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/core/utilis/app_assets.dart';
 import 'package:movie_app/core/utilis/app_routes.dart';
 import 'package:movie_app/domain/models/movieDetails_model.dart';
 
 import '../../../core/utilis/app_colors.dart';
 import '../../../core/utilis/app_text_style.dart';
+import '../../presentaion/history_cubit/histor_cubit.dart';
 
 
 class MovieImage extends StatelessWidget {
@@ -19,6 +21,8 @@ class MovieImage extends StatelessWidget {
     return  Padding(
       padding: const EdgeInsets.all(8.0),
       child: InkWell(onTap: (){
+        context.read<HistoryCubit>().addMovieToHistory(movie);
+
         Navigator.push(context,AppRoutes.movieDetails(movie.id!));
       },
         child: Stack( children: [

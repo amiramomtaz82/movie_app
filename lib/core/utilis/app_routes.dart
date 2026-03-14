@@ -45,7 +45,7 @@ abstract final class AppRoutes {
   static Route movieDetails(String movieId) =>
       MaterialPageRoute(builder: (_) => MovieDetailsScreen(movieId: movieId,));
 
-  static Route moviePlay( String url) =>
-      MaterialPageRoute(builder: (_) =>PlayMovie(url: url));
+  static Route moviePlay( String url,MovieDetailsModel movie) =>
+      MaterialPageRoute(builder: (_) =>PlayMovie(url: url,movie: movie,));
 
 }

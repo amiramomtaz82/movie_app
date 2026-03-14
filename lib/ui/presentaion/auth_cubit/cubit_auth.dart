@@ -1,13 +1,15 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../data/user_dataModel.dart';
+import '../../../data/dataSource_firebase_auth.dart';
+import '../../../domain/models/user_dataModel.dart';
 import '../../../domain/reopsotries/repos_auth.dart';
 import 'cubit_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   final AuthRepository repo;
+  final FirebaseAuthDataSource authDS;
 
-  AuthCubit(this.repo) : super(AuthInitial());
+  AuthCubit(this.repo,this.authDS) : super(AuthInitial());
 
   Future<void> login(String email, String password) async {
     try {
@@ -103,8 +105,23 @@ class AuthCubit extends Cubit<AuthState> {
     }
 
 
-    Future<void> logout() async {
-      await repo.logout();
-      emit(AuthInitial());
+  // Logout function
+  Future<void> logout() async {
+    try {
+      await authDS.signOut();
+      emit(AuthLoggedOut());
+    } catch (e) {
+      emit(AuthError(e.toString()));
     }
+  }
+
+  // Delete account function
+  Future<void> deleteAccount() async {
+    try {
+      await authDS.deleteAccount();
+      emit(AuthLoggedOut()); // after delete, user is logged out
+    } catch (e) {
+      emit(AuthError(e.toString()));
+    }
+  }
   }
