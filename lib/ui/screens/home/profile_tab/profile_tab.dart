@@ -14,6 +14,7 @@ import 'package:movie_app/ui/presentaion/history_cubit/histor_cubit.dart';
 import 'package:movie_app/ui/screens/home/movie_image.dart';
 
 import '../../../../core/di/di.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../presentaion/auth_cubit/cubit_auth.dart';
 import '../../../presentaion/history_cubit/history_state.dart';
 import '../../Authentication/login_screen.dart';
@@ -84,7 +85,7 @@ class _ProfileTabState extends State<ProfileTab> {
                               UserDM.currentUser?.favoriteMovies.length ?? 0}"
                             ,style: Appstyles.white36Med),
                             SizedBox(height: 10,),
-                            Text(Appstrings.wishList,style: Appstyles.white24Med)
+                            Text(AppLocalizations.of(context)!.wishList,style: Appstyles.white24Med)
 
                           ],
                         ),
@@ -94,7 +95,7 @@ class _ProfileTabState extends State<ProfileTab> {
                           children: [
                             Text("${UserDM.currentUser?.historyMovies.length??0}",style: Appstyles.white36Med,),
                             SizedBox(height: 10,),
-                            Text(Appstrings.history,style: Appstyles.white24Med,)
+                            Text(AppLocalizations.of(context)!.history,style: Appstyles.white24Med,)
 
                           ],
                         ),
@@ -106,7 +107,7 @@ class _ProfileTabState extends State<ProfileTab> {
                     children: [
                     Expanded(flex:2,child:
                     CustomElevatedButton(
-                      text: Appstrings.editProfile,onClick: (){
+                      text: AppLocalizations.of(context)!.editProfile,onClick: (){
               Navigator.push(context,AppRoutes.updateProfile);
 
                     },)),
@@ -123,7 +124,7 @@ class _ProfileTabState extends State<ProfileTab> {
                         },
                           backgroundColor: Appcolors.red,icon:
                       Icon(Icons.exit_to_app_sharp,color: Appcolors.white,),
-                        text: Appstrings.exist,),
+                        text: AppLocalizations.of(context)!.exist,),
                     )
                   ],),]),)),
                    TabBar(
@@ -134,8 +135,8 @@ class _ProfileTabState extends State<ProfileTab> {
                       indicatorColor: Appcolors.yellow,
                       tabs:[
                       Tab(icon: Image.asset(Appassets.menue),
-                          text:Appstrings.wishList),
-                      Tab(icon:Image.asset(Appassets.folder),text: Appstrings.history,)
+                          text:AppLocalizations.of(context)!.wishList),
+                      Tab(icon:Image.asset(Appassets.folder),text: AppLocalizations.of(context)!.history,)
                     ],
                     ),
 

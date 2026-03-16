@@ -9,6 +9,8 @@ import 'package:movie_app/core/utilis/app_constant.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:injectable/injectable.dart';
 
+import '../lang_service/language_interceptor.dart';
+
 @module
 abstract class GetItModule {
 
@@ -25,6 +27,8 @@ abstract class GetItModule {
     var dio = Dio(
         BaseOptions(baseUrl:"https://movies-api.accel.li/api/v2/")///should add my own
     );
+
+    dio.interceptors.add(LanguageInterceptor()); // changing the language by api
     dio.interceptors.add(PrettyDioLogger(requestBody: true));
     return dio;
 

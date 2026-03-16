@@ -89,14 +89,14 @@ class _LoginScreenState extends State<LoginScreen> {
 
                     CustomTextField(
                       controller: emailController,
-                      hint: Appstrings.email,
+                      hint: AppLocalizations.of(context)!.email,
                       prefixIcon: Image.asset(Appassets.email),
                     ),
 
                     CustomTextField(
                       validator: Validation.validatePassword,
                       controller: passwordController,
-                      hint: Appstrings.password,
+                      hint: AppLocalizations.of(context)!.password,
                       prefixIcon: Image.asset(Appassets.password),
                       suffixIcon: Image.asset(Appassets.eyeOff),
                     ),
@@ -113,7 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           );
                         },
                         child: Text(
-                          Appstrings.forgetPassword,
+                          AppLocalizations.of(context)!.forgetPassword,
                           textAlign: TextAlign.right,
                           style: Appstyles.yellow14regular,
                         ),
@@ -137,7 +137,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          Appstrings.dontHaveAccount,
+                          AppLocalizations.of(context)!.dontHaveAccount,
                           style: Appstyles.white14regular,
                         ),
 
@@ -151,7 +151,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             );
                           },
                           child: Text(
-                            Appstrings.createOne,
+                            AppLocalizations.of(context)!.createAccount,
                             style: Appstyles.yellow14regular,
                           ),
                         ),
@@ -171,7 +171,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Padding(
                           padding: const EdgeInsets.all(4.0),
                           child: Text(
-                            Appstrings.or,
+                            AppLocalizations.of(context)!.or,
                             style: Appstyles.yellow14regular,
                           ),
                         ),
@@ -213,7 +213,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
 
                             Text(
-                              Appstrings.loginWithGoogle,
+                              AppLocalizations.of(context)!.loginWithGoogle,
                               style: Appstyles.black14reg,
                             ),
                           ],

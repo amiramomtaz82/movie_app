@@ -17,27 +17,3 @@ gengerCard (String title){
 
 
 }
-List <String> gengerTitleList=[
-
-Appstrings.actions,
-  Appstrings.sciFi,
-  Appstrings.adventure,
-  Appstrings.fantasy,
-  Appstrings.horror,
-  Appstrings.documentary,
-  Appstrings.family,
-  Appstrings.animation,
-  Appstrings.music,
-  Appstrings.lifestyle,
-  Appstrings.Drama,
-  Appstrings.comedy,
-  Appstrings.crime,
-
-
-
-
-
-
-
-
-];

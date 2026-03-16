@@ -12,6 +12,7 @@ import 'package:movie_app/ui/screens/home/profile_tab/image_selected.dart';
 
 import '../../../../domain/models/user_dataModel.dart';
 
+import '../../../../l10n/app_localizations.dart';
 import '../../../presentaion/auth_cubit/cubit_auth.dart';
 import '../../Authentication/forget_screen.dart';
 import '../../Authentication/login_screen.dart';
@@ -27,7 +28,7 @@ class _UpadteProfileState extends State<UpadteProfile> {
   int selectedIndex=0;
  late TextEditingController nameController;
  late TextEditingController phoneController;
- String pickedImage=UserDM.currentUser?.image?? avatarList[2];
+late String pickedImage;
 
  @override
   void initState() {
@@ -35,18 +36,23 @@ class _UpadteProfileState extends State<UpadteProfile> {
     super.initState();
     nameController=TextEditingController(text: UserDM.currentUser?.name);
     phoneController=TextEditingController(text:UserDM.currentUser?.phone);
+    pickedImage = (UserDM.currentUser != null &&
+        avatarList.contains(UserDM.currentUser!.image))
+        ? UserDM.currentUser!.image!
+        : avatarList[0];
   }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold( appBar: AppBar(backgroundColor: Appcolors.black, centerTitle: true,
+      child: Scaffold( appBar: AppBar(backgroundColor:
+      Appcolors.black, centerTitle: true,
           leading:
           IconButton(onPressed: () {
             Navigator.pop(context);
           }, icon: Icon(Icons.arrow_back, color: Appcolors.yellow,)),
 
           title: Text(
-            Appstrings.pickAvatar, style: Appstyles.yellow14regular,)
+            AppLocalizations.of(context)!.pickAvatar, style: Appstyles.yellow14regular,)
 
       ),
         backgroundColor: Appcolors.black,
@@ -109,11 +115,13 @@ class _UpadteProfileState extends State<UpadteProfile> {
                 ),
               ),
               SizedBox(height: 20),
-              CustomTextField(controller: nameController,
-                  prefixIcon: Icon(Icons.person), hint:""),
+
+              CustomTextField(
+                  hint : AppLocalizations.of(context)!.name,controller: nameController,
+                  prefixIcon: Icon(Icons.person), ),
               SizedBox(height: 10),
               CustomTextField(controller: phoneController,
-                hint:"" ,
+                hint:AppLocalizations.of(context)!.phone ,
                 prefixIcon: Image.asset(Appassets.phone),
               ),
 
@@ -129,19 +137,19 @@ class _UpadteProfileState extends State<UpadteProfile> {
                         builder: (_) => ForgetScreen(email:UserDM.currentUser?.email??"")));
                   },
                     child: Text(
-                      Appstrings.resetPassword,
+                      AppLocalizations.of(context)!.resetPassword,
                       style: Appstyles.white16Reg,
                       textAlign: TextAlign.left,
                     ),
                   ),
                 ),
               ),
-              SizedBox(height: 300),
+              SizedBox(height: 200),
               CustomElevatedButton(
                 borderColor: Appcolors.red,
                 backgroundColor: Appcolors.red,
                 textColor: Appcolors.white,
-                text: Appstrings.deleteAccount,
+                text: AppLocalizations.of(context)!.deleteAccount,
                 onClick: ()  async {
                   try {
                     await context.read<AuthCubit>().deleteAccount();
@@ -158,7 +166,7 @@ class _UpadteProfileState extends State<UpadteProfile> {
               ),
 
               CustomElevatedButton(
-                text: Appstrings.updateData,
+                text: AppLocalizations.of(context)!.updateData,
                 onClick: () async {
                   await context.read<AuthCubit>().updateUser(
                     name: nameController.text,

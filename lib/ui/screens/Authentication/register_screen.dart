@@ -15,6 +15,7 @@ import 'package:movie_app/ui/screens/home/home_screen.dart';
 import '../../../core/show_message.dart';
 
 
+import '../../../l10n/app_localizations.dart';
 import '../../presentaion/auth_cubit/cubit_auth.dart';
 import '../../presentaion/auth_cubit/cubit_state.dart';
 import '../../presentaion/lacal_cubit/local_cubit.dart';
@@ -65,7 +66,7 @@ String selectedAvatar=avatarList[0];
           Navigator.pop(context);
         }, icon:Icon(Icons.arrow_back,color: Appcolors.yellow,)),
 
-        title: Text(Appstrings.register,style: Appstyles.yellow14regular,)
+        title: Text(AppLocalizations.of(context)!.register,style: Appstyles.yellow14regular,)
       ,
       )
     ,body: SingleChildScrollView(child:
@@ -127,18 +128,18 @@ String selectedAvatar=avatarList[0];
                   validator: Validation.validateName,
                   controller: nameController,
 
-                  hint: Appstrings.name, prefixIcon: Image.asset(Appassets.name),),
+                  hint: AppLocalizations.of(context)!.name, prefixIcon: Image.asset(Appassets.name),),
                 CustomTextField(
 
                     controller: emailController,
-                    hint: Appstrings.email,
+                    hint: AppLocalizations.of(context)!.email,
                     prefixIcon: Image.asset(Appassets.email)),
 
 
                 CustomTextField(
                   validator:Validation.validatePassword,
                   controller: passwordController,
-                  hint: Appstrings.password,
+                  hint: AppLocalizations.of(context)!.password,
                   prefixIcon: Image.asset(Appassets.password),
                   suffixIcon: Image.asset(Appassets.eyeOff),),
 
@@ -155,7 +156,7 @@ String selectedAvatar=avatarList[0];
                   onChanged:  (_) {
         key.currentState!.validate();
         },
-                  hint: Appstrings.confirmPassword,
+                  hint: AppLocalizations.of(context)!.confirmPassword,
                   prefixIcon: Image.asset(Appassets.password),
                   suffixIcon: Image.asset(Appassets.eyeOff),),
 
@@ -163,11 +164,11 @@ String selectedAvatar=avatarList[0];
                 CustomTextField(
                   validator: Validation.validatePhone,
                   controller: phoneController,
-                  hint: Appstrings.phone,
+                  hint: AppLocalizations.of(context)!.phone,
                   prefixIcon: Image.asset(Appassets.phone),),
 
 
-                CustomElevatedButton(text: Appstrings.createAccount,
+                CustomElevatedButton(text: AppLocalizations.of(context)!.createAccount,
 
                     onClick: () async {
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

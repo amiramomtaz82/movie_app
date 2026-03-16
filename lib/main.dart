@@ -84,7 +84,7 @@ class MyApp extends StatelessWidget {
       }
       return MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: LoginScreen(),
+        home: SplashScreen(),
         locale: locale,
 
         supportedLocales: const [
